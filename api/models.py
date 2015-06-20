@@ -1,4 +1,15 @@
-from django.contrib.gis.models.db import models
+from django.contrib.gis.db import models
+from django.contrib.postgres.fields import ArrayField
+
+
+class Customer(models.Model):
+    name = models.TextField()
+    aliases = ArrayField(models.TextField())
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'customer'
 
 
 class GeoLocation(models.Model):
