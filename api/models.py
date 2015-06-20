@@ -28,9 +28,13 @@ class GeoLocation(models.Model):
         unique_together = (
             ('lon', 'lat', 'altitude'),
         )
+        db_table = 'geolocation'
 
 
 class Marker(models.Model):
     geolocation = models.ForeignKey(GeoLocation)
     description = models.TextField()
     title = models.TextField()
+
+    class Meta:
+        db_table = 'marker'

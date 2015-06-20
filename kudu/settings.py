@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'api'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -76,7 +77,7 @@ WSGI_APPLICATION = 'kudu.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'kudu',
         'USER': 'kudu',
         'PASSWORD': 'password',
