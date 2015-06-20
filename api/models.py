@@ -2,6 +2,13 @@ from django.contrib.gis.db import models
 from django.contrib.postgres.fields import ArrayField
 
 
+__all__ = [
+    'Customer',
+    'GeoLocation',
+    'Marker'
+]
+
+
 class Customer(models.Model):
     name = models.TextField()
     aliases = ArrayField(models.TextField())

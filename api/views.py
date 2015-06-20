@@ -1,3 +1,14 @@
-from django.shortcuts import render
+from rest_framework import viewsets
 
-# Create your views here.
+from api import models
+from api import serializers
+
+
+class GeoLocationViewSet(viewsets.ModelViewSet):
+    queryset = models.GeoLocation.objects.all()
+    serializer_class = serializers.GeoLocationSerializer
+
+
+class MarkerViewSet(viewsets.ModelViewSet):
+    queryset = models.Marker.objects.all()
+    serializer_class = serializers.MarkerSerializer
