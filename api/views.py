@@ -3,6 +3,11 @@ from rest_framework import viewsets
 from api import models
 from api import serializers
 
+__all__ = [
+    'GeoLocationViewSet',
+    'MarkerViewSet'
+]
+
 
 class GeoLocationViewSet(viewsets.ModelViewSet):
     queryset = models.GeoLocation.objects.all()
