@@ -20,20 +20,20 @@ var KuduApp = React.createClass({
     var styles = {
       left: {
         display: "table-cell",
-        "vertical-align": "middle",
-        "text-align": "right",
-        "width": "50%",
-        "padding-right": "15px"
+        verticalAlign: "middle",
+        textAlign: "right",
+        width: "50%",
+        paddingRight: "15px"
       },
       right: {
         display: "table-cell",
-        "table-cell": "vertical-align",
-        "text-align": "left"
+        tableCell: "vertical-align",
+        textAlign: "left"
       }
     };
 
     return (
-      <div style={{display: this.props.hidden ? "none" : "block" }}>
+      <div style={{display: this.state ? "none" : "block"}}>
         <div style={styles.left}>
           Scan Target &#35;1 (surfer):
         </div>

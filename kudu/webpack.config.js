@@ -5,21 +5,24 @@
  * the subfolder /webpack-dev-server/ is visited. Visiting the root will not automatically reload.
  */
 'use strict';
+var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
 
   output: {
-    filename: 'main.js',
-    publicPath: '/assets/'
+    filename: 'bundle.js',
+    path: path.join(__dirname, 'dist'),
+    publicPath: '/static/'
   },
 
   cache: true,
   debug: true,
-  devtool: false,
+  devtool: "eval",
   entry: [
-      'webpack/hot/only-dev-server',
-      './src/components/main.jsx'
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    './src/components/main'
   ],
 
   stats: {
@@ -32,7 +35,7 @@ module.exports = {
     alias: {
       'styles': __dirname + '/src/styles',
       'mixins': __dirname + '/src/mixins',
-      'components': __dirname + '/src/components/'
+      'components': __dirname + '/src/components'
     }
   },
   module: {
@@ -44,12 +47,13 @@ module.exports = {
     loaders: [{
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
-      loader: 'react-hot!babel-loader'
+      loaders: [ 'react-hot', 'babel' ],
+      include: path.join(__dirname, 'src')
     }, {
       test: /\.css$/,
       loader: 'style-loader!css-loader'
     }, {
-      test: /\.(png|jpg|woff|woff2)$/,
+      test: /\.(png|jpg|woff|woff2|wtc)$/,
       loader: 'url-loader?limit=8192'
     }]
   },

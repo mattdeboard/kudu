@@ -24,12 +24,14 @@ module.exports = function (grunt) {
       }
     },
 
+    serverPort: 8080,
+
     'webpack-dev-server': {
       options: {
         hot: true,
-        port: 8000,
+        port: '<%= serverPort %>',
         webpack: webpackDevConfig,
-        publicPath: '/assets/',
+        publicPath: '/static/',
         contentBase: './<%= pkg.src %>/'
       },
 
@@ -40,7 +42,7 @@ module.exports = function (grunt) {
 
     connect: {
       options: {
-        port: 8000
+        port: '<%= serverPort %>'
       },
 
       dist: {
@@ -60,10 +62,10 @@ module.exports = function (grunt) {
         delay: 500
       },
       dev: {
-        path: 'http://localhost:<%= connect.options.port %>/webpack-dev-server/'
+        path: 'http://localhost:<%= serverPort %>/webpack-dev-server'
       },
       dist: {
-        path: 'http://localhost:<%= connect.options.port %>/'
+        path: 'http://localhost:<%= serverPort %>/'
       }
     },
 

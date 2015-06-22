@@ -14,7 +14,7 @@ var Routes = (
 );
 
 Router.run(Routes, function (Handler) {
-  React.render(<Handler/>, content);
+  React.render(<Handler/>, document.getElementById('content'));
 });
 
 /**

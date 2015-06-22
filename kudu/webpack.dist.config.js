@@ -11,13 +11,13 @@ var webpack = require('webpack');
 module.exports = {
 
   output: {
-    publicPath: '/assets/',
+    publicPath: '/static/',
     path: 'dist/assets/',
     filename: 'main.js'
   },
 
   debug: false,
-  devtool: false,
+  devtool: 'eval',
   entry: './src/components/main.js',
 
   stats: {
@@ -51,10 +51,10 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel-loader'
+      loader: 'react-hot!babel'
     }, {
       test: /\.css$/,
-      loader: 'style-loader!css-loader'
+      loader: 'style!css'
     }, {
       test: /\.(png|jpg|woff|woff2)$/,
       loader: 'url-loader?limit=8192'
