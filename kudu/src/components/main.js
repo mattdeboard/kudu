@@ -16,3 +16,9 @@ var Routes = (
 Router.run(Routes, function (Handler) {
   React.render(<Handler/>, content);
 });
+
+/**
+   Local Variables:
+   eval: (web-mode-set-content-type "jsx")
+   End:
+*/
