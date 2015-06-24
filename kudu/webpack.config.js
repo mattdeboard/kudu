@@ -25,6 +25,10 @@ module.exports = {
     './src/components/main'
   ],
 
+  externals: {
+    ade: "AR"
+  },
+
   stats: {
     colors: true,
     reasons: true
@@ -39,15 +43,15 @@ module.exports = {
     }
   },
   module: {
-    preLoaders: [{
-      test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      loader: 'jsxhint'
-    }],
+    /* preLoaders: [{
+       test: /\.(js|jsx)$/,
+       exclude: /node_modules/,
+       loader: 'jsxhint'
+       }], */
     loaders: [{
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
-      loaders: [ 'react-hot', 'babel' ],
+      loaders: [ 'babel' ],
       include: path.join(__dirname, 'src')
     }, {
       test: /\.css$/,

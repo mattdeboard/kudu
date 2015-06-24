@@ -6,19 +6,21 @@
 
 'use strict';
 
+var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
 
   output: {
-    publicPath: '/static/',
-    path: 'dist/assets/',
-    filename: 'main.js'
+    filename: 'bundle.js',
+    path: path.join(__dirname, 'dist/assets'),
+    publicPath: '/static/'
   },
 
+  cache: true,
   debug: false,
   devtool: 'eval',
-  entry: './src/components/main.js',
+  entry: './src/components/main',
 
   stats: {
     colors: true,
