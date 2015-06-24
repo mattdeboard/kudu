@@ -7,6 +7,7 @@
 'use strict';
 var path = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 
@@ -25,14 +26,20 @@ module.exports = {
     './src/components/main'
   ],
 
-  externals: {
-    ade: "AR"
-  },
-
   stats: {
     colors: true,
     reasons: true
   },
+
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'src/index.html',
+      inject: true
+    })
+  ],
 
   resolve: {
     extensions: ['', '.js', '.jsx'],
@@ -42,6 +49,7 @@ module.exports = {
       'components': __dirname + '/src/components'
     }
   },
+
   module: {
     /* preLoaders: [{
        test: /\.(js|jsx)$/,
@@ -61,10 +69,5 @@ module.exports = {
       loader: 'url-loader?limit=8192'
     }]
   },
-
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
-  ]
 
 };

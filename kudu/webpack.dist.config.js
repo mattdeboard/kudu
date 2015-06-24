@@ -9,13 +9,14 @@
 
 var path = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, 'dist/assets'),
-    publicPath: '/static/'
+    publicPath: '/assets/'
   },
 
   cache: true,
@@ -32,7 +33,12 @@ module.exports = {
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin()
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new HtmlWebpackPlugin({
+      filename: '../index.html',
+      template: 'src/index.html',
+      inject: true
+    })
   ],
 
   resolve: {
