@@ -28,7 +28,7 @@ module.exports = function (grunt) {
 
     'webpack-dev-server': {
       options: {
-        hot: true,
+        hot: false,
         port: '<%= serverPort %>',
         webpack: webpackDevConfig,
         publicPath: '/static/',
@@ -62,7 +62,7 @@ module.exports = function (grunt) {
         delay: 500
       },
       dev: {
-        path: 'http://localhost:<%= serverPort %>/webpack-dev-server'
+        path: 'http://localhost:<%= serverPort %>/webpack-dev-server/'
       },
       dist: {
         path: 'http://localhost:<%= serverPort %>/'
