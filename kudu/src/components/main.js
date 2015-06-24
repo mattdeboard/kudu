@@ -4,7 +4,7 @@ var KuduApp = require('./KuduApp');
 var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
-
+var AR = require('../ARShim');
 
 var Routes = (
   <Route handler={KuduApp}>
@@ -15,11 +15,11 @@ var Routes = (
 var World = {
   loaded: false,
 
-  init: function initFn() {
+  init: function() {
     this.createOverlays();
   },
 
-  createOverlays: function createOverlaysFn() {
+  createOverlays: function() {
     /*
        First an AR.ClientTracker needs to be created in order to start the
        recognition engine. It is initialized with a URL specific to the target
@@ -36,7 +36,9 @@ var World = {
      */
     this.tracker = new AR.ClientTracker("assets/magazine.wtc", {
       onLoaded: function() {
-        React.render(<Handler/>, document.getElementById('content'));
+        Router.run(Routes, function(Handler) {
+          React.render(<Handler />, document.getElementById('content'));
+        });
       }
     });
 
@@ -73,8 +75,10 @@ var World = {
       }
     });
   }
-}
+};
+
 World.init();
+
 /**
    Local Variables:
    eval: (web-mode-set-content-type "jsx")
