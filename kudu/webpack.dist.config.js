@@ -1,7 +1,8 @@
 /*
- * Webpack distribution configuration
- *
- * This file is set up for serving the distribution version. It will be compiled to dist/ by default
+   Webpack distribution configuration
+
+   This file is set up for serving the distribution version. It will be compiled
+   to dist/ by default
  */
 
 'use strict';
