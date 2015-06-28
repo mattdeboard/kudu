@@ -6,12 +6,6 @@ var Router = require('react-router');
 var Route = Router.Route;
 var AR = require('../ARShim');
 
-var Routes = (
-  <Route handler={KuduApp}>
-    <Route name="/" handler={KuduApp}/>
-  </Route>
-);
-
 var World = {
   loaded: false,
 
@@ -36,9 +30,11 @@ var World = {
      */
     this.tracker = new AR.ClientTracker("assets/magazine.wtc", {
       onLoaded: function() {
-        Router.run(Routes, function(Handler) {
-          React.render(<Handler />, document.getElementById('content'));
-        });
+        React.render(<KuduApp />, document.getElementById('content'));
+
+        /* Router.run(<Route handler={KuduApp} />, function(Handler) {
+           React.render(<Handler />, document.getElementById('content'));
+           }); */
       }
     });
 

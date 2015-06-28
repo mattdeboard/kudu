@@ -2,44 +2,39 @@
 
 var React = require('react/addons');
 var ReactTransitionGroup = React.addons.TransitionGroup;
+var cx = require('classnames');
+var $ = require('jquery');
+
+window.banana = function() { console.log("Hey!"); };
 
 var KuduApp = React.createClass({
-  state: {
-    hidden: false
-  },
-
-  componentDidMount: function() {
-    var self = this;
-    setTimeout(
-      function() { self.setState({ hidden: true }); },
-      10000
+  handlePOIMarkClick: function(e) {
+    return $.post("http://localhost:8000/api/v1/geolocations/",
+           {
+             lat: 32.91849384,
+             lon: 85.12938198,
+             altitude: 100
+           },
+           'json'
     );
   },
 
   render: function() {
-    var styles = {
-      left: {
-        display: "table-cell",
-        verticalAlign: "middle",
-        textAlign: "right",
-        width: "50%",
-        paddingRight: "15px"
-      },
-      right: {
-        display: "table-cell",
-        tableCell: "vertical-align",
-        textAlign: "left"
-      }
-    };
+    var btnClasses = cx(
+      'ui-grid-b',
+      'ui-btn',
+      'ui-btn-inline',
+      'ui-shadow',
+      'ui-corner-all'
+    );
 
     return (
-      <div style={{display: this.state ? "none" : "block"}}>
-        <div style={styles.left}>
-          Scan Target &#35;1 (surfer):
-        </div>
-        <div style={styles.right}>
-          <img src="assets/surfer.png" />
-        </div>
+      <div className="ui-grid-d">
+        <button className={btnClasses}
+                id="poi-mark"
+                onClick={this.handlePOIMarkClick}>
+          Mark as Point of Interest
+        </button>
       </div>
     );
   }
