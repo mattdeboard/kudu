@@ -16,7 +16,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, 'dist/assets'),
-    publicPath: '/assets/'
+    publicPath: 'assets/'
   },
 
   cache: true,
@@ -27,6 +27,10 @@ module.exports = {
   stats: {
     colors: true,
     reasons: false
+  },
+
+  externals: {
+    "jquery": "jQuery"
   },
 
   plugins: [
