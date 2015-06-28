@@ -24,12 +24,11 @@ class GeoLocation(models.Model):
     lat = models.FloatField()
     altitude = models.FloatField()
 
-    mpoly = models.MultiPolygonField()
     objects = models.GeoManager()
 
     def __str__(self):
         return "<GeoLocation lon=%s lat=%s altitude=%s>" % (
-            self.lon, self.lat, self.altitude)
+    self.lon, self.lat, self.altitude)
 
     class Meta:
         unique_together = (
