@@ -6,15 +6,21 @@ var cx = require('classnames');
 var $ = require('jquery');
 
 var KuduApp = React.createClass({
+  propTypes: {
+    lat: React.PropTypes.number,
+    lon: React.PropTypes.number,
+    altitude: React.PropTypes.number
+  },
+
   handlePOIMarkClick: function(e) {
     return $.ajax(
       {
         url: "/api/v1/geolocations/",
         method: 'POST',
         data: {
-          lat: 32.91849384,
-          lon: 85.12938198,
-          altitude: 100
+          lat: this.props.lat,
+          lon: this.props.lon,
+          altitude: this.props.altitude
         },
         dataType: 'json',
         headers: {
@@ -42,7 +48,7 @@ var KuduApp = React.createClass({
         <button className={btnClasses}
                 id="poi-mark"
                 onClick={this.handlePOIMarkClick}>
-          Mark as Point of Interest
+          Mark as POI
         </button>
       </div>
     );
