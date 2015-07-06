@@ -54,6 +54,8 @@ module.exports = {
     }
   },
 
+  watch: true,
+
   module: {
     preLoaders: [{
       test: /\.js$/,
