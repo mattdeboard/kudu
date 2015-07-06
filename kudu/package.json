@@ -28,6 +28,7 @@
     "grunt-open": "~0.2.3",
     "grunt-webpack": "~1.0.8",
     "html-webpack-plugin": "^1.5.2",
+    "immutable": "^3.7.4",
     "jshint-loader": "~0.8.0",
     "jsxhint-loader": "~0.2.0",
     "karma": "~0.12.21",
