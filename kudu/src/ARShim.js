@@ -1,4 +1,14 @@
 var Shim = {
+  context: {
+    onLocationChanged: function() {
+      console.log("Location changed!");
+    }
+  },
+
+  activateDebugMode: function() {
+    console.log("Debug mode activated!");
+  },
+
   ClientTracker: function(path, callback) {
     console.log("ClientTracker instantiated with path: " + path);
     callback.onLoaded();
