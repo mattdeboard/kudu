@@ -5,18 +5,27 @@ var ReactTransitionGroup = React.addons.TransitionGroup;
 var cx = require('classnames');
 var $ = require('jquery');
 
-window.banana = function() { console.log("Hey!"); };
-
 var KuduApp = React.createClass({
   handlePOIMarkClick: function(e) {
-    return $.post("http://localhost:8000/api/v1/geolocations/",
-           {
-             lat: 32.91849384,
-             lon: 85.12938198,
-             altitude: 100
-           },
-           'json'
-    );
+    return $.ajax(
+      {
+        url: "/api/v1/geolocations/",
+        method: 'POST',
+        data: {
+          lat: 32.91849384,
+          lon: 85.12938198,
+          altitude: 100
+        },
+        dataType: 'json',
+        headers: {
+          Authorization: 'Token 105089ea9abbe8aeb8bd9eaf873287e05d533d7f'
+        }
+      }).fail( function(errObj) {
+      var errStatus = JSON.parse(errObj.responseText);
+      errStatus.non_field_errors.forEach( function(val) {
+        console.log(val);
+      });
+    });
   },
 
   render: function() {
