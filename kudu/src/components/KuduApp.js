@@ -1,5 +1,6 @@
 'use strict';
 
+var Immutable = require('immutable');
 var React = require('react/addons');
 var ReactTransitionGroup = React.addons.TransitionGroup;
 var cx = require('classnames');

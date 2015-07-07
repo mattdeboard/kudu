@@ -24,7 +24,16 @@ var Shim = {
 
   Trackable2DObject: function() {
     console.log("Trackable2DObject instantiated.");
-  }
+  },
+
+  GeoLocation: function(lat, lon, altitude) {
+    console.log("GeoLocation instantiated with lat/lon/alt: " + [lat, lon, altitude].join());
+  },
+
+  GeoObject: function(markerLocation, config) {
+    console.log("GeoObject instantiated");
+  },
+
 };
 
 module.exports = window.AR || Shim;
