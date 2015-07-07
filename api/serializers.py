@@ -14,6 +14,8 @@ class GeoLocationSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class MarkerSerializer(serializers.HyperlinkedModelSerializer):
+    geolocation = GeoLocationSerializer()
+
     class Meta:
         model = models.Marker
         fields = (
@@ -21,3 +23,8 @@ class MarkerSerializer(serializers.HyperlinkedModelSerializer):
             'description',
             'title'
         )
+
+    def create(self, validated_data):
+        geolocation = validated_data.pop('geolocation')
+        loc, _ = models.GeoLocation.objects.get_or_create(**geolocation)
+        return models.Marker.objects.create(geolocation=loc, **validated_data)
