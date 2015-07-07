@@ -27,8 +27,7 @@ class GeoLocation(models.Model):
     objects = models.GeoManager()
 
     def __str__(self):
-        return "<GeoLocation lon=%s lat=%s altitude=%s>" % (
-    self.lon, self.lat, self.altitude)
+        return "lon=%s lat=%s altitude=%s" % (self.lon, self.lat, self.altitude)
 
     class Meta:
         unique_together = (
