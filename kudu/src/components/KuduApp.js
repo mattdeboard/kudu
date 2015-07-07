@@ -14,6 +14,7 @@ var KuduApp = React.createClass({
   },
 
   getDefaultProps: function() {
+    // For development in browser only.
     return {lat: 100.9, lon: 200.8, altitude: 300.7};
   },
 
@@ -39,11 +40,9 @@ var KuduApp = React.createClass({
           "Content-Type": "application/json"
         }
       }).fail( function(errObj) {
-      var errStatus = JSON.parse(errObj.responseText);
-      errStatus.non_field_errors.forEach( function(val) {
-        console.log(val);
+        var errStatus = JSON.parse(errObj.responseText);
+        console.log(errStatus);
       });
-    });
   },
 
   render: function() {
@@ -54,8 +53,7 @@ var KuduApp = React.createClass({
       'ui-shadow',
       'ui-corner-all'
     );
-    var disabled = !this.props.lat;
-    console.log(this.props);
+
     return (
       <div className="ui-grid-d">
         <h4>Latitude: {this.props.lat}</h4>
@@ -77,4 +75,4 @@ module.exports = KuduApp;
    Local Variables:
    eval: (web-mode-set-content-type "jsx")
    End:
-*/
+ */

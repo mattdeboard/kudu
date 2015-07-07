@@ -4,7 +4,6 @@ var KuduApp = require('./KuduApp');
 var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
-var World = require('../World');
 var AR = require('../ARShim');
 var ClientLocation = require('components/ClientLocation');
 var $ = require('jquery');
