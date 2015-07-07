@@ -105,3 +105,9 @@ var World = {
 };
 
 module.exports = World;
+
+/**
+   Local Variables:
+   eval: (web-mode-set-content-type "jsx")
+   End:
+ */

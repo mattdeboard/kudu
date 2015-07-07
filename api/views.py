@@ -17,3 +17,7 @@ class GeoLocationViewSet(viewsets.ModelViewSet):
 class MarkerViewSet(viewsets.ModelViewSet):
     queryset = models.Marker.objects.all()
     serializer_class = serializers.MarkerSerializer
+
+    def handle_exception(self, exc):
+        print exc
+        return super(MarkerViewSet, self).handle_exception(exc)
