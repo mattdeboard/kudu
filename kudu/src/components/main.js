@@ -5,7 +5,7 @@ var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
 var AR = require('../ARShim');
-var ClientLocation = require('components/ClientLocation');
+var ClientLocation = require('./ClientLocation');
 var $ = require('jquery');
 
 // will truncate all strings longer than given max-length "n". e.g.
@@ -25,8 +25,9 @@ var World = {
        covered in more detail in later examples.
      */
 
-    var markerLocation = new AR.GeoLocation(poiData.lat, poiData.lon,
-                                            poiData.altitude);
+    var markerLocation = new AR.GeoLocation(poiData.geolocation.lat,
+                                            poiData.geolocation.lon,
+                                            poiData.geolocation.altitude);
 
     /*
        There are two major points that need to be considered while drawing
@@ -50,9 +51,7 @@ var World = {
       opacity: 1.0
     });
 
-    var distToUser = markerLocation.distanceToUser().toFixed(2).toString() + "m";
-
-    var titleLabel = new AR.Label(distToUser.toString(), 1, {
+    var titleLabel = new AR.Label(poiData.title, 1, {
       zOrder: 1,
       offsetY: 0.55,
       style: {
@@ -61,13 +60,20 @@ var World = {
       }
     });
 
-    /* var descriptionLabel = new AR.Label(trunc(poiData.description, 15), 0.8, {
-       zOrder: 1,
-       offsetY: -0.55,
-       style: {
-       textColor: '#FFFFFF'
-       }
-       }); */
+    descriptionLabel = new AR.Label(trunc(poiData.description, 15), 0.8, {
+        zOrder: 1,
+        offsetY: -0.55,
+        style: {
+            textColor: '#FFFFFF'
+        }
+    });
+
+    // Changed:
+    this.markerObject = new AR.GeoObject(markerLocation, {
+        drawables: {
+            cam: [this.markerDrawable_idle, this.titleLabel, this.descriptionLabel]
+        }
+    });
 
     // Changed:
     var markerObject = new AR.GeoObject(markerLocation, {
@@ -93,7 +99,7 @@ var World = {
 
   fetchPOIs: function() {
     return $.ajax({
-      url: "/api/v1/geolocations/",
+      url: "/api/v1/markers/",
       headers: {
         Authorization: 'Token 105089ea9abbe8aeb8bd9eaf873287e05d533d7f'
       }

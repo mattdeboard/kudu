@@ -38,6 +38,7 @@ class MarkerSerializer(serializers.HyperlinkedModelSerializer):
         """
         Dict of native values <- Dict of primitive datatypes.
         """
+        print data
         if not isinstance(data, dict):
             message = self.error_messages['invalid'].format(
                 datatype=type(data).__name__
@@ -85,23 +86,10 @@ class MarkerSerializer(serializers.HyperlinkedModelSerializer):
         return ret
 
     def create(self, validated_data):
+        print validated_data
         geolocation = validated_data.pop('geolocation')
         loc, _ = models.GeoLocation.objects.get_or_create(**geolocation)
-        marker, created = models.Marker.objects.get_or_create(geolocation=loc,
-                                                              **validated_data)
+        marker, _ = models.Marker.objects.get_or_create(geolocation=loc,
+                                                        **validated_data)
 
-        # Add a 'url' field if this record already existed.
-        if not created:
-            url = reverse('marker-detail', args=[marker.id])
-            self.data = {api_settings.URL_FIELD_NAME: url}
         return marker
-
-    @property
-    def data(self):
-        return super(MarkerSerializer, self).data
-
-    @data.setter
-    def data(self, value):
-        new_data = self.data.copy()
-        new_data.update(value)
-        self._data = new_data

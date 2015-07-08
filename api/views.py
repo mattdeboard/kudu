@@ -1,4 +1,5 @@
 from rest_framework import status, viewsets
+from rest_framework.decorators import list_route
 from rest_framework.response import Response
 
 from api import models
@@ -33,3 +34,7 @@ class MarkerViewSet(viewsets.ModelViewSet):
                             headers={k: v for k, v in response.items()})
         return response
 
+    @list_route(methods=['get'])
+    def clear_all(self, request):
+        models.Marker.objects.all().delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
