@@ -28,7 +28,8 @@ class MarkerSerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             'geolocation',
             'description',
-            'title'
+            'title',
+            'id'
         )
         skip_validation_fields = (
             'geolocation',
